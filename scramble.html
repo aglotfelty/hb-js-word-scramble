@@ -7,6 +7,9 @@
     <h1>A Javascript Word Scramble Game</h1>
 
     <script>
+        
+        "use strict"; // errors for mistakes to test the code
+
         var WORDS     = ["booger", "apple", "hackbright", "mango"];
         var SCRAMBLED = ["oogreb", "papel", "backrhight", "goman"];
 
@@ -16,18 +19,34 @@
 
             // Grab a random word from the WORDS array.
             var randomIndex = Math.floor(Math.random() * 4);
+
+            var scrambledWord = WORDS[randomIndex].split("").sort(
+                                function(a, b) { 
+                                return 0.5 - Math.random();
+                                }).join("");
             // Grab the corresponding scrambled word from the SCRAMBLED array.
-            var scrambledWord = SCRAMBLED[randomIndex];
+            // var scrambledWord = SCRAMBLED[randomIndex];
             // Prompt the user to guess the original word when given the scrambled word.
-            var guess = prompt("Guess what this word is: " + scrambledWord);
+            var guess = prompt("Guess what this word is: " + scrambledWord).toLowerCase().trim();
             // If the user guesses wrong, tell them they were wrong and show the right word.
-            
+            if (guess !== WORDS[randomIndex]) {
+                alert(guess
+                    + " is the wrong word. Sorry! The correct word is "
+                    + WORDS[randomIndex]);
+            }
             // If the user guesses the correct word, congratulate them.
+            else {
+                alert("Congratulations! You guessed the correct word.");
+            }
 
             playing = confirm("Press OK To keep playing or Cancel to quit");
 
-            // What does confirm() return?
+            // What does confirm() return? 
+            // True if click OK, or False if click cancel. 
+            // It will make the player keep going or stop
+            
             // What does setting the playing variable do?
+            // It causes the while loop to keep going until the value turns False.
         }
 
         alert("goodbye!");
